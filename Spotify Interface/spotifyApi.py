@@ -104,27 +104,6 @@ def getAudioFeatures(sp,trackID):
 	return(features)
 #Get audio features
 
-def buildDataTesting():
-	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='359093842e6c4c24bf94099d1195b391',
-													client_secret='0a2a8d2ea7da4916bd0a02f328043187',
-													redirect_uri='http://localhost:8080',
-													scope='user-read-currently-playing'))
-	songData = getCurrentSongData(sp)
-	if(songData == 0):
-		print('No Song Is Playing')
-		return(0)
-	#artImage = getArtistData(sp,(songData.get('artistName')))
-	#artImgUrl = artImage.get('artistImage')
-	print(songData)
-
-	#print(artImgUrl)
-	#downloadImage(artImgUrl,'artistImg.jpg')
-
-	#albCover = songData.get('albumCover')
-	#downloadImage(albCover,'albumCover.jpg')
-#buildDataTesting()
-
-
 
 
 lastSong = ''
@@ -133,8 +112,8 @@ def getData(actType):
 	#0 = currentSongData = artistData = audioFeatures = download song cover = download artist cover
 	#1 = is a song playing?
 	#2 = should I update?
-	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='359093842e6c4c24bf94099d1195b391',
-													client_secret='0a2a8d2ea7da4916bd0a02f328043187',
+	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='',
+													client_secret='',
 													redirect_uri='http://localhost:8080',
 													scope='user-read-currently-playing'))
 	#Define credentials for the spotify dev app, (you need spoityf premium to access endpoints)
