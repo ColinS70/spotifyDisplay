@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Spotify Interface</title>
+		<link href="/static/style.css" rel="stylesheet" type="text/css"/>
+	</head>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
+
+<script>
+  $(document).ready(function(){
+    //connect to the socket server.
+    var socket = io.connect('http://127.0.0.1:5000/update');
+
+    //receive details from server
+    socket.on('update', function(msg) {
+        console.log(msg);
+        console.log(msg[1]);
+        $('#content').fadeOut("fast", function(){
+        $('#content').replaceWith(jQuery.parseHTML(msg[1]))
+        $('#content').fadeIn("slow")})
+    });
+});
+</script>
+
+
+
+
+
+<div id="content" class="flex-container">
+
+  <div class="flex-child">
+    <img class='img' src={{artImgLoc}}><img>
+    <h1>{{songName}}</h1>
+    <p1>Popularity: {{songPop}}</p1>
+    <p1>Danceability: {{dance}}</p1>
+    <p1>Energy: {{energy}}</p1>
+    <p1>Release: {{relDate}}</p1>
+    <p1>Tracks: {{totalTracks}}</p1>
+  </div>
+  
+  <div class="flex-child">
+    <img class='img' src={{covImgLoc}}><img>
+    <h1>{{artName}}</h1>
+    <p1>Popularity: {{artPopularity}}</p1>
+  </div>
+</div>
